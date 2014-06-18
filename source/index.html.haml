@@ -1,0 +1,21 @@
+.container
+  %br
+  %div{"ng-controller" => "FilterTableDemoCtrl"}
+    %pre {{ checkall }}
+    %pre {{ checklist }}
+    %table.table.table-striped.table-bordered
+      %thead
+        %tr{ "ng-class" => "info" }
+          %th
+            %label.checkbox
+              %input{ :type => "checkbox", "ng-model" => "checkall", "ng-change" => "checktoggleall()" }
+          %th{ "ng-repeat" => "item in data_head()", "ng-class" => "" }
+            {{ item }}
+      %tbody
+        %tr{ "ng-repeat" => "item in to_transpose(data)", "ng-class" => "$first ? 'success' : $even ? 'warning' : 'info'" }
+          %th
+            %label.checkbox
+              %input{ :type => "checkbox", "ng-model" => "checklist[$index]" }
+          %th{ "ng-repeat" => "value in item track by $index" }
+            {{ value }}
+

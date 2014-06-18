@@ -1,0 +1,16 @@
+<html ng-app>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js'></script>
+  <p>Test1</p>
+  <div ng-repeat='item in [1, 2]'>
+    <p>{{ item }}</p>
+  </div>
+  <p>Test2</p>
+  <div ng-repeat='item in [1, 1]'>
+    <p>{{ item }}</p>
+  </div>
+  <p>Test2</p>
+  <div ng-repeat='item in [1, 1] track by $index'>
+    <p>{{ item }}</p>
+  </div>
+</html>
+
