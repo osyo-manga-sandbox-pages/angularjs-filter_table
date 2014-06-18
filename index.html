@@ -11,23 +11,24 @@
     <meta charset='utf-8'>
     <meta content='IE=edge' http-equiv='X-UA-Compatible'>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <script language='javascript'>
-      angular.module("MyApp", ["ui.bootstrap"]);
-    </script>
+    <script language='javascript'></script>
   </head>
   <body>
     <div class='container'>
       <br>
       <div ng-controller='FilterTable'>
+        <h2>checkall</h2>
         <pre>{{ checkall }}</pre>
+        <h2>checklist</h2>
         <pre>{{ checklist }}</pre>
+        <h2>data_row</h2>
         <pre>{{ data_row }}</pre>
         <table class='table table-striped table-bordered'>
           <thead>
             <tr ng-class='info'>
               <th>
                 <label class='checkbox'>
-                  <input ng-change='checktoggleall()' ng-model='checkall' type='checkbox'>
+                  <input ng-change='checkall' ng-model='checkall' type='checkbox'>
                 </label>
               </th>
               <th ng-class='' ng-repeat='item in data_head'>
