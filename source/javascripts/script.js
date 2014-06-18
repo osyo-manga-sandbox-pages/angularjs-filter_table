@@ -1,4 +1,8 @@
-var FilterTableDemoCtrl = function ($scope) {
+var FilterTable = function ($scope) {
+
+	$scope.click = function (text){
+		console.log(text);
+	}
 
 	$scope.checklist = [
 		false, false, false, false, false

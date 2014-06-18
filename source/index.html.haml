@@ -1,6 +1,6 @@
 .container
   %br
-  %div{"ng-controller" => "FilterTableDemoCtrl"}
+  %div{"ng-controller" => "FilterTable"}
     %pre {{ checkall }}
     %pre {{ checklist }}
     %table.table.table-striped.table-bordered
@@ -12,10 +12,36 @@
           %th{ "ng-repeat" => "item in data_head()", "ng-class" => "" }
             {{ item }}
       %tbody
-        %tr{ "ng-repeat" => "item in to_transpose(data)", "ng-class" => "$first ? 'success' : $even ? 'warning' : 'info'" }
+        %tr{ "ng-repeat" => "item in data_row()", "ng-class" => "$first ? 'success' : $even ? 'warning' : 'info'" }
           %th
             %label.checkbox
               %input{ :type => "checkbox", "ng-model" => "checklist[$index]" }
           %th{ "ng-repeat" => "value in item track by $index" }
             {{ value }}
+
+
+
+-#     %table.table.table-striped.table-bordered
+-#       %thead
+-#         %tr{ "ng-repeat" => "month in months", "ng-class" => "$even ? 'warning' : 'info'" }
+-#           %th
+-#             %label.checkbox
+-#               %input{ :type => "checkbox" }
+-#           %th
+-#             {{ month }}
+
+
+
+
+
+-#             %dev{ :style => "position:relative; right: 40px;" }
+-#               %button.btn.btn-default
+
+
+-#               %label.checkbox
+-#                 %input{ :type => "checkbox" }
+
+-#             %dev{ :style => "position:absolute; top: 10px;" }
+
+
 
