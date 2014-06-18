@@ -1,1 +1,73 @@
-function to_row(a){var t=a.data,c=[[],[],[],[],[]];for(var r in t)if(0!=a.is_active(r))for(var e=0;e<t[r].length;e++)c.length<=e&&(c[e]=[]),c[e].push(t[r][e]);return c}function to_head(a){var t=a.data,c=[];for(var r in t)a.is_active(r)&&c.push(r);return c}app=angular.module("MyApp",["ui.bootstrap"]),app.controller("FilterTable",["$scope",function(a){a.checklist=[!1,!1,!1,!1,!1],a.checkall=!1,a.data={homu:[1,0,0,1,1],mami:[0,0,1,1,0],mado:[1,0,0,1,0],an:[0,1,0,0,1],saya:[0,0,1,0,1]},a.is_active=function(t){for(var c=a.data[t],r=0;r<c.length;r++)if(a.checklist[r]&&0==c[r])return 0;return 1},a.$watch("checkall",function(){for(var t=0;t<a.checklist.length;t++)a.checklist[t]=a.checkall}),a.$watch("checklist",function(){a.data_head=to_head(a),a.data_row=to_row(a)},!0)}]);
+function to_row($scope){
+	var data = $scope.data
+	var result = [[], [], [], [], []];
+	for(var key in data){
+		if( $scope.is_active(key) == false ){
+			continue;
+		}
+		
+		for(var i = 0 ; i < data[key].length ; i++){
+			if( result.length <= i ){
+				result[i] = []
+			}
+			result[i].push(data[key][i]);
+		}
+	}
+	return result;
+}
+
+
+function to_head($scope){
+	var data = $scope.data;
+	var result = []
+	for(var key in data){
+		if( $scope.is_active(key) ){
+			result.push(key);
+		}
+	}
+	return result;
+}
+
+app = angular.module("MyApp", ["ui.bootstrap"]);
+
+
+app.service('$scope', function () {});
+// var FilterTable = function ($scope) {
+app.controller("FilterTable", ['$scope', function ($scope) {
+
+	$scope.checklist = [
+		false, false, false, false, false
+	];
+	$scope.checkall = false;
+
+	$scope.data = {
+		"homu" : [1, 0, 0, 1, 1],
+		"mami" : [0, 0, 1, 1, 0],
+		"mado" : [1, 0, 0, 1, 0],
+		"an"   : [0, 1, 0, 0, 1],
+		"saya" : [0, 0, 1, 0, 1]
+	}
+
+	$scope.is_active = function (key){
+		var data = $scope.data[key];
+		for(var i=0 ; i < data.length ; i++){
+			if( $scope.checklist[i] && data[i] == 0 ){
+				return 0;
+			}
+		}
+		return 1;
+	}
+
+	$scope.$watch("checkall", function (){
+		for(var i=0 ; i < $scope.checklist.length ; i++){
+			$scope.checklist[i] = $scope.checkall;
+		}
+	});
+
+	$scope.$watch("checklist", function (){
+		$scope.data_head = to_head($scope);
+		$scope.data_row  = to_row($scope);
+	}, true);
+
+}]);
+
