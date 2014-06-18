@@ -31,7 +31,6 @@ function to_head($scope){
 app = angular.module("MyApp", ["ui.bootstrap"]);
 
 
-app.service('$scope', function () {});
 // var FilterTable = function ($scope) {
 app.controller("FilterTable", ['$scope', function ($scope) {
 
